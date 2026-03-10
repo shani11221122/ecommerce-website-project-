@@ -37,15 +37,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🚀 ElectroHub API Server running on http://localhost:${PORT}`);
-  console.log(`📦 Available endpoints:`);
-  console.log(`   GET  /api/products`);
-  console.log(`   GET  /api/products/featured`);
-  console.log(`   GET  /api/products/categories`);
-  console.log(`   GET  /api/products/:id`);
-  console.log(`   GET  /api/cart`);
-  console.log(`   POST /api/cart`);
-  console.log(`   PUT  /api/cart/:productId`);
-  console.log(`   DELETE /api/cart/:productId\n`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
